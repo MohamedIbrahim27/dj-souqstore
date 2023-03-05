@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SOUQ > Cart{% endblock %}
+{% block body %}
+    <head>
+    <link rel="stylesheet" href="{% static 'css/main2.css' %}" media="all">
+    </head>
+
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4" style="margin-top: 40px;">
+                <div class="Header">
+                    <a class="arrow-leftt" href="{% url 'product:product_list' %}"><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
+                    
+                    <h3 class="Heading ml-5">Shopping Cart</h3>
+                    <a class="remove" href="{% url 'orders:clear_Cart' %}"><u>Remove all</u></a>
+                </div>
+                
+                {% if orderdetials %}
+                    {% for detail in orderdetials  %}
+                        <div class="card-body">
+                            <div class="Cart-Items" style="margin-left: 0;">
+                                <div class="dropdown-divider"></div>
+                                <div class="image-box">
+                                <img src="{{detail.product.PRDIImage.url}}" style="height: 100%;width: 100%;"/>
+                                </div>
+                                <div class="about">
+                                <h1 class="title">{{detail.product.PRDname}}</h1>
+                                <h3 class="subtitle">{{detail.product.PRDCost}} $</h3>
+                                </div>
+                                <div class="counter" style="display: flex;">
+                                    <a href="{% url 'orders:sub_qty' orderdetials_id=detail.id %}" class="minus mr-3 btn btn-outline-success-modify
+                                    text-uppercase fw-bold">-</a>
+                                    <label class="quantity fw-bold text-black"
+                                    style="font-size: 18px;
+                                    font-weight: 500;" name="qty" >{{detail.quantity}}</label>
+                                    <a href="{% url 'orders:add_qty' orderdetials_id=detail.id %}" class="plus ml-3 btn btn-outline-success-modify
+                                    text-uppercase fw-bold">+</a>
+                                </div>
+                                <div class="prices">
+                                    <div class="amount">{% widthratio detail.product.PRDCost 1 detail.quantity %} $</div>
+                                    <a class="remove" href="{% url 'orders:remove_from_Cart' orderdetials_id=detail.id %}"><u>Remove</u></a>
+                                </div>
+                                </div>
+                                <hr style="width: 50%;
+                                margin-right: 20%;
+                                float: center;
+                                margin-bottom: 0;
+                                margin-top: 8px;">
+                        </div>
+                    {% endfor %}
+                    <div>
+                        <hr> 
+                        <div class="checkout mt-3" >
+                            <div class="total">
+                            <div>
+                            <div class="Subtotal">Total</div>
+                            <div class="items"> {{orderdetials.count}} items</div>
+                            </div>
+                            <div class="total-amount"> {{total}} $</div>
+                            </div>
+                            <div class="items">Order Number : {{order.id}}</div>
+                            <a type="button" href="{% url 'orders:ckeck_out' %}" class="btn btn-outline-success-modify
+                            btn-login text-uppercase fw-bold" style="border-radius: 20px; width:100%;
+                            justify-content: center;height: 28px;padding: 4px;">Check out</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <h4 style="margin: auto; margin-top:50px;margin-bottom:50px;" class="alert alert-warning">There are no purchases here,
+                    <a class=" btn ml-2 btn-outline-success-modify"
+                    style="text-decoration: none; border: 1px solid #00dcff;"
+                    href="{% url 'product:product_list' %}"> All Products</a></h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <style>
+        body{
+            background: linear-gradient(to right, #0062E6, #33AEFF);
+        }
+        .plus,
+        .minus{
+            border: 1px solid #1687d9;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            background-color: #1687d9;
+            color: aliceblue;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+    </style>
+    <script src="{% static 'js/global.js' %}"></script>
+{% endblock body %}

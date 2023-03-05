@@ -1,0 +1,111 @@
+<div class="containerrrr" style="width: 97%; margin:0 auto;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <a class="navbar-brand " style="color: #2196f3;font-weight:bold;font-size:30px" href="{% url 'product:product_list' %}">SOUQ</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+         <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+       </li>
+       <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+               Categories
+           </a>
+           <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">Action</a>
+               <a class="dropdown-item" href="#">Another action</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#">Something else here</a>
+           </div>
+       </li>
+     </ul>
+     <form class="form-inline my-2 my-lg-0" action="{% url 'products:product_list' %}">
+       <input class="form-control mr-sm-2" type="search" name="searchname" placeholder="Search" aria-label="Search">
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+     </form>
+     <ul class="navbar-nav">
+      {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-shopping-cart"></i> Cart<span class="sr-only"></span>
+          </a>
+          <div class="dropdown-menu  mt-4" aria-labelledby="navbarDropdown">
+            {% if orderdetails %}
+              {% for detail in orderdetails  %}
+              <div style="display: flex; padding:5px">
+                <img src="{{detail.product.PRDIImage.url}}" style="height: 40px;width:40px">
+                <h6 style="transform: translate(10px, 10px);">{{detail.product.PRDname}}</h6>
+                <h6 style="    transform: translate(24px, -2px);
+                border: 1px solid #1687d9;
+                border-radius: 50%;
+                height: 20px;
+                width: 20px;
+                font-size: 15px;
+                text-align: center;
+                font-weight: 900;">{{detail.quantity}}</h6>
+                <h6 style="font-size: 13px;
+                  transform: translate(-1px, 26px);">
+                  {% widthratio detail.product.PRDCost 1 detail.quantity %}$</h6>
+              </div>
+              <hr style="margin-bottom:5px; margin-top: 5px;">
+              {% endfor %}
+            {% endif %}
+            {% if not orderdetails %}
+            <h4 style="margin: auto;" class="alert alert-warning"> No Products here .</h4>
+              <div class="dropdown-divider"></div>
+            {% endif %}
+            <div style="display: flex;">
+              <a class="dropdown-item ml-2 btn-outline-success-modify"
+              style="width: 50%; justify-content: center; border-radius: 12px; display: flex;
+              border: 1px solid #007bff;" 
+              href="{% url 'orders:cart' %}">My Cart</a>
+            </div>
+          </div>
+        </li>
+        {% else %}
+        {% endif %}
+      {% if user.is_authenticated %}
+       <span class="mt-1" >
+         |
+       </span>
+       <li class="nav-item dropdown " style="margin-right: 20px;">
+         <a class="nav-link dropdown-toggle active" href="#" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-user"></i> {{user.username}}</a>
+         <div class="container moda"> 
+           <div class="dropdown-menu" style="margin-left: -53px;">
+             <a class="dropdown-item" href="{% url 'accounts:profile' slug=user.profile.slug %}">Profile</a>
+             <a class="dropdown-item" href="{% url 'accounts:showproduct_favorites' %}">Favorite Products</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#">My Order</a>
+             <a class="dropdown-item" href="#">Track Your Order</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#">Change Password</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+           </div>
+         </div>
+       </li>
+      {% else %}
+       <li class="nav-item active">
+           <a class="nav-link " href="{% url 'accounts:signin' %}"><span style="font-size: bold"> <i class="fa-solid fa-right-to-bracket"></i> Sign In</span></a>
+       </li>
+       {% endif %}
+    </ul>
+   </div>
+  </nav>
+</div>
+
+{% comment %}
+<div class="dropdown-menu">
+  <a class="dropdown-item" href="#">Profile</a>
+  <a class="dropdown-item" href="#">Edit Profile</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">My Order</a>
+  <a class="dropdown-item" href="#">Track Your Order</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">Change Password</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">Login Out</a>
+</div>
+{% endcomment %}
