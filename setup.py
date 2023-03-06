@@ -9,7 +9,7 @@ setup(
     url='https://github.com/MohamedIbrahim27/souqstore.git',
     packages=find_packages(),
     install_requires=[
-        'Django==4.1',
+        'Django==4.1.5',
         'requests',
         # add any other dependencies here
     ],
