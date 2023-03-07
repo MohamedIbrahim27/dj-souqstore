@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t7w&=cs_6w0a=k1kn)obz9i_c0uzrv=r^0#p#40(n0%2k+fqcw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,14 +85,18 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DATABASES = {'default': os.environ.get('PGPASSWORD=q0hZMTruxAMX1im77jHd psql -h containers-us-west-105.railway.app -U postgres -p 5589 -d railway')}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('railway'),
+        'USER': os.getenv('postgres'),
+        'PASSWORD': os.getenv('q0hZMTruxAMX1im77jHd'),
+        'HOST': os.getenv('containers-us-west-105.railway.app'),
+        'PORT': os.getenv('5589'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
