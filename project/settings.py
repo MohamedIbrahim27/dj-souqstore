@@ -92,13 +92,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('railway'),
-        'USER': os.getenv('postgres'),
-        'PASSWORD': os.getenv('q0hZMTruxAMX1im77jHd'),
-        'HOST': os.getenv('containers-us-west-105.railway.app'),
-        'PORT': os.getenv('5589'),
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'q0hZMTruxAMX1im77jHd',
+        'HOST': 'containers-us-west-105.railway.app',
+        'PORT': '5589',
     }
 }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
