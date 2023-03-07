@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,16 +87,18 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('railway'),
-        'USER': os.getenv('postgres'),
-        'PASSWORD': os.getenv('q0hZMTruxAMX1im77jHd'),
-        'HOST': os.getenv('containers-us-west-105.railway.app'),
-        'PORT': os.getenv('5589'),
-    }
-}
+
+DATABASES = {'default': dj_database_url.config('postgresql://postgres:q0hZMTruxAMX1im77jHd@containers-us-west-105.railway.app:5589/railway')}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('railway'),
+#         'USER': os.getenv('postgres'),
+#         'PASSWORD': os.getenv('q0hZMTruxAMX1im77jHd'),
+#         'HOST': os.getenv('containers-us-west-105.railway.app'),
+#         'PORT': os.getenv('5589'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
