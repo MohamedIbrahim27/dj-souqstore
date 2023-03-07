@@ -159,7 +159,3 @@ DEFAULT_FROM_EMAIL = 'mido.ebrahim08zx@gmail.com'
 EMAIL_HOST_PASSWORD = 'gmfyatncbgpagshm'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-
-
-DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
