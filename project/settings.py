@@ -86,7 +86,6 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DATABASES = {'default': os.environ.get('PGPASSWORD=q0hZMTruxAMX1im77jHd psql -h containers-us-west-105.railway.app -U postgres -p 5589 -d railway')}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
