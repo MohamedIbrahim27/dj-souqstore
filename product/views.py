@@ -21,4 +21,8 @@ def product_list(request):
 def product_detail(request,slug):
     product_detail = Product.objects.get(slug=slug)
     context ={'product_detail' : product_detail}
+<<<<<<< HEAD
     return render(request, 'product/product_detail.html',context)
+=======
+    return render(request, 'product/product_detail.html',context)
+>>>>>>> aa40bb44ef6b15ed51ec767396345b9c36b59b55
