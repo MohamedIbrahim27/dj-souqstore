@@ -16,13 +16,9 @@ def product_list(request):
         if name:
             product_list = product_list1.filter(PRDname__icontains=name)
     context ={'product_list' : product_list}
-    return render(request, 'product/product_list.html',context)
+    return render(request, 'Product/product_list.html',context)
     
 def product_detail(request,slug):
     product_detail = Product.objects.get(slug=slug)
     context ={'product_detail' : product_detail}
-<<<<<<< HEAD
-    return render(request, 'product/product_detail.html',context)
-=======
-    return render(request, 'product/product_detail.html',context)
->>>>>>> aa40bb44ef6b15ed51ec767396345b9c36b59b55
+    return render(request, 'Product/product_detail.html',context)
