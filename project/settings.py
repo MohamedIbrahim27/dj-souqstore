@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-t7w&=cs_6w0a=k1kn)obz9i_c0uzrv=r^0#p#40(n0%2k+fqcw'
-<<<<<<< HEAD
 
-=======
->>>>>>> aa40bb44ef6b15ed51ec767396345b9c36b59b55
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -90,54 +86,13 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {'default': dj_database_url.config('postgresql://postgres:q0hZMTruxAMX1im77jHd@containers-us-west-105.railway.app:5589/railway')}
-<<<<<<< HEAD
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'q0hZMTruxAMX1im77jHd',
-#         'HOST': 'containers-us-west-105.railway.app',
-#         'PORT': '5589',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-=======
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'q0hZMTruxAMX1im77jHd',
-        'HOST': 'containers-us-west-105.railway.app',
-        'PORT': '5589',
-    }
-}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
->>>>>>> aa40bb44ef6b15ed51ec767396345b9c36b59b55
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ["PGDATABASE"],
-#         'USER': os.environ["PGUSER"],
-#         'PASSWORD': os.environ["PGPASSWORD"],
-#         'HOST': os.environ["PGHOST"],
-#         'PORT': os.environ["PGPORT"],
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -173,16 +128,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-<<<<<<< HEAD
+# STATIC_URL = 'static/'
+# STATIC_ROOT = "/var/www/example.com/static/"
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-=======
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
->>>>>>> aa40bb44ef6b15ed51ec767396345b9c36b59b55
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / "Images",)
@@ -204,3 +158,11 @@ EMAIL_HOST_USER = 'mido.ebrahim08zx@gmail.com'
 DEFAULT_FROM_EMAIL = 'mido.ebrahim08zx@gmail.com'
 EMAIL_HOST_PASSWORD = 'gmfyatncbgpagshm'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+# DJANGORESIZED_DEFAULT_SIZE = [500, 500]
+# DJANGORESIZED_DEFAULT_QUALITY = 75
+# DJANGORESIZED_DEFAULT_KEEP_META = True
+# DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+# DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
