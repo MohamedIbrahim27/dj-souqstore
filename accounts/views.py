@@ -164,7 +164,8 @@ def edit_profile(request ,slug):
                 'country_list': country_list,
                 'adress': user_profile.adress,
                 }
-                return redirect ('/accounts/profile/' + str(request.user) + '/editprofile')
+                slug = user_profile.slug
+                return redirect ('/accounts/profile/' +slug+ '/editprofile')
             else:
                 messages.error(request,'Please fill in all fields !')
                 return render(request, 'editprofile.html',context)
